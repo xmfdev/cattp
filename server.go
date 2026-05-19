@@ -14,7 +14,7 @@ func getServerAddress() string {
 }
 
 func handle(w http.ResponseWriter, r *http.Request) {
-	log.Printf("Received %s (%s) request from %s.", r.Method, r.URL, r.RemoteAddr)
+	log.Printf("Received %s (%s) from %s.", r.Method, r.URL, r.RemoteAddr)
 
 	// FileServer returns a `Handler` with the contents of a file system.
 	http.FileServer(http.Dir(SERVER_FILE_SYSTEM_ROOT)).ServeHTTP(w, r)
