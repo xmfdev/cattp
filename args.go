@@ -12,6 +12,8 @@ const (
 	flagAddressLong         = "--address="
 	flagFileSystemRootShort = "-r"
 	flagFileSystemRootLong  = "--root="
+	flagExtraLogsShort      = "-l"
+	flagExtraLogsLong       = "--logs"
 )
 
 func handleAddress(address string) {
@@ -24,6 +26,10 @@ func handlePort(port string) {
 
 func handleFileSystemRoot(root string) {
 	SERVER_FILE_SYSTEM_ROOT = root
+}
+
+func handleExtraLogs(_ string) {
+	SERVER_ENABLE_EXTRA_LOGS = true
 }
 
 func createOptions() []targs.Option {
@@ -42,6 +48,11 @@ func createOptions() []targs.Option {
 			Options:     []string{flagFileSystemRootShort, flagFileSystemRootLong},
 			Handler:     handleFileSystemRoot,
 			HasExtraArg: true,
+		},
+		{
+			Options: []string{flagExtraLogsShort, flagExtraLogsLong},
+			Handler: handleExtraLogs,
+			HasExtraArg: false,
 		},
 	}
 }
